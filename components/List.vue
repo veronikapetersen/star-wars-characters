@@ -1,5 +1,4 @@
 <script setup>
-import Person from "./Person.vue";
 const { data } = await useFetch("https://swapi.dev/api/people");
 const people = unref(data.value.results);
 const gender = ref("all");
@@ -11,7 +10,7 @@ const wrapper = ref([]);
 const filtered = computed(() => {
   return people.filter((person) => {
     const genderMatch =
-      gender.value === "all" ? people : person.gender === gender.value;
+      gender.value === "all" ? true : person.gender === gender.value;
 
     const birthYearMatch = isToggled.value
       ? parseInt(person.birth_year) >= 20 && parseInt(person.birth_year) <= 40
